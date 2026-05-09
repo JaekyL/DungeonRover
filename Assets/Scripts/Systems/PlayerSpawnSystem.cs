@@ -42,7 +42,7 @@ namespace Systems
             EntityCommandBuffer spawnECB = beginECBSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
             Entity playerEntity = spawnECB.Instantiate(config.PlayerPrefab);
-            spawnECB.SetComponent(playerEntity, new LocalTransform(){_Position = playerPosition[0].Value, _Rotation = quaternion.identity, _Scale = 1});
+            spawnECB.SetComponent(playerEntity, new LocalTransform(){Position = playerPosition[0].Value, Rotation = quaternion.identity, Scale = 1});
             
             //Destroying the Event Entity
             EndSimulationEntityCommandBufferSystem.Singleton endECBSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();

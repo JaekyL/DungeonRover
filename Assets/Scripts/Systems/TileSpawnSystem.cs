@@ -54,7 +54,7 @@ internal partial struct TileSpawnSystem : ISystem
         
         DungeonConfig config = SystemAPI.GetSingleton<DungeonConfig>();
         Entity configEntity = SystemAPI.GetSingletonEntity<DungeonConfig>();
-        DungeonConfigAspect dungeonConfigAspect = SystemAPI.GetAspectRW<DungeonConfigAspect>(configEntity);
+        DungeonConfigAspect dungeonConfigAspect = SystemAPI.GetAspect<DungeonConfigAspect>(configEntity);
         
         NativeArray<NewFloorTiles> newFloorTiles = _query.ToComponentDataArray<NewFloorTiles>(Allocator.Temp);
         BeginSimulationEntityCommandBufferSystem.Singleton ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
@@ -75,7 +75,7 @@ internal partial struct TileSpawnSystem : ISystem
         
         //Need GridAspect to update grid accordingly
         Entity gridEntity = SystemAPI.GetSingletonEntity<Grid>();
-        GridAspect gridAspect = SystemAPI.GetAspectRW<GridAspect>(gridEntity);
+        GridAspect gridAspect = SystemAPI.GetAspect<GridAspect>(gridEntity);
 
         NativeArray<int> tileTypes = new NativeArray<int>(Enum.GetValues(typeof(TileType)).Length, Allocator.Temp);
 
@@ -96,7 +96,7 @@ internal partial struct TileSpawnSystem : ISystem
                 }
 
                 Entity entity = ecb.Instantiate(config.TilePrefab);
-                ecb.SetComponent(entity, new LocalTransform(){_Position = position.Value + Vector3.up * 0.55f, _Rotation = quaternion.identity, _Scale = 1f});
+                ecb.SetComponent(entity, new LocalTransform(){Position = position.Value + Vector3.up * 0.55f, Rotation = quaternion.identity, Scale = 1f});
                 
                 ecb.AddComponent<TileColor>(entity);
                 ecb.SetComponent(entity, new TileColor()

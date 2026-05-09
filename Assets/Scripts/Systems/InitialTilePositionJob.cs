@@ -13,7 +13,7 @@ internal partial struct InitialTilePositionJob : IJobEntity
     private int _rowCounter;
     private int _columnCounter;
     
-    void Execute([ChunkIndexInQuery] int chunkIndex, ref TileAspect tile)
+    void Execute([ChunkIndexInQuery] int chunkIndex, TileAspect tile)
     {
         
     }

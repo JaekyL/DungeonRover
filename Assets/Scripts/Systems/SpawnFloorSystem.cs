@@ -43,7 +43,7 @@ namespace Systems
             //Creating new Floor
             FloorConfig config = SystemAPI.GetSingleton<FloorConfig>();
             Entity configEntity = SystemAPI.GetSingletonEntity<FloorConfig>();
-            FloorConfigAspect floorConfigAspect = SystemAPI.GetAspectRW<FloorConfigAspect>(configEntity);
+            FloorConfigAspect floorConfigAspect = SystemAPI.GetAspect<FloorConfigAspect>(configEntity);
 
             NativeArray<int> floorTiles = floorConfigAspect.GetRandomFloorTiles();
             NativeArray<Vector3> tilePositions = floorConfigAspect.GenerateFloorGrid(floorTiles, out NativeHashMap<int2, Vector3> grid);
@@ -54,12 +54,12 @@ namespace Systems
             for (int i = 0; i < tilePositions.Length; i++)
             {
                 Entity floorTile = spawnECB.Instantiate(config.FloorPrefab);
-                spawnECB.SetComponent(floorTile, new LocalTransform(){_Position = tilePositions[i], _Rotation = quaternion.Euler(math.radians(90),0,0), _Scale = floorTiles[i]});
+                spawnECB.SetComponent(floorTile, new LocalTransform(){Position = tilePositions[i], Rotation = quaternion.Euler(math.radians(90),0,0), Scale = floorTiles[i]});
             }
 
             //Creating grid
             Entity gridEntity = SystemAPI.GetSingletonEntity<Grid>();
-            GridAspect gridAspect = SystemAPI.GetAspectRW<GridAspect>(gridEntity);
+            GridAspect gridAspect = SystemAPI.GetAspect<GridAspect>(gridEntity);
             gridAspect.CreateGrid(grid);
             
             //Creating New FloorTilesEvent
