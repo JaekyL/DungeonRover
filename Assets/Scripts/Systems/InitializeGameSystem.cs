@@ -1,6 +1,9 @@
 ﻿using Components;
+using EventComponents;
 using Unity.Burst;
 using Unity.Entities;
+using UnityEngine;
+using Grid = Components.Grid;
 
 namespace Systems
 {
@@ -26,8 +29,17 @@ namespace Systems
             BeginSimulationEntityCommandBufferSystem.Singleton ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
             EntityCommandBuffer ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
+            //NewFloor Event
             Entity entity = ecb.CreateEntity();
             ecb.AddComponent<NewFloor>(entity);
+            
+            //SpawnPlayer Event
+            Entity playerEntity = ecb.CreateEntity();
+            ecb.AddComponent<SpawnPlayer>(playerEntity);
+
+            //Initialize GridEntity
+            Entity gridEntity = ecb.CreateEntity();
+            ecb.AddComponent<Grid>(gridEntity);
 
             state.Enabled = false;
         }

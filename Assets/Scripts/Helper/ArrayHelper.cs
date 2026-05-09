@@ -1,10 +1,23 @@
 ﻿using System;
 using Unity.Collections;
+using UnityEngine;
 
 namespace Helper
 {
     public static class ArrayHelper
     {
+        public static Vector3 GetAveragePosition(Vector3[] positions)
+        {
+            Vector3 avgPos = Vector3.zero;
+
+            foreach (Vector3 position in positions)
+            {
+                avgPos += position;
+            }
+            
+            return avgPos / positions.Length;
+        }
+        
         public static void Set2D<T>(this NativeArray<T> array, int x, int y, T value, int width) where T : unmanaged
         {
             int flatIndex = FlattenIndex(x, y, width);

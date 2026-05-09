@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Aspects;
 using Components;
+using EventComponents;
 using Helper;
 using Unity.Burst;
 using Unity.Collections;
@@ -8,6 +9,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
+using Grid = Components.Grid;
 
 namespace Systems
 {
@@ -38,14 +40,13 @@ namespace Systems
             //Checking on Event Entity
             if(_query.ToComponentDataArray<NewFloor>(Allocator.Temp).Length == 0) return;
 
-            
             //Creating new Floor
             FloorConfig config = SystemAPI.GetSingleton<FloorConfig>();
             Entity configEntity = SystemAPI.GetSingletonEntity<FloorConfig>();
-            FloorConfigAspect floorConfigAspect = SystemAPI.GetAspectRW<FloorConfigAspect>(configEntity);
+            FloorConfigAspect floorConfigAspect = SystemAPI.GetAspect<FloorConfigAspect>(configEntity);
 
             NativeArray<int> floorTiles = floorConfigAspect.GetRandomFloorTiles();
-            NativeArray<Vector3> tilePositions = floorConfigAspect.CalculateTilePositions(floorTiles);
+            NativeArray<Vector3> tilePositions = floorConfigAspect.GenerateFloorGrid(floorTiles, out NativeHashMap<int2, Vector3> grid);
 
             BeginSimulationEntityCommandBufferSystem.Singleton beginECBSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
             EntityCommandBuffer spawnECB = beginECBSingleton.CreateCommandBuffer(state.WorldUnmanaged);
@@ -53,15 +54,17 @@ namespace Systems
             for (int i = 0; i < tilePositions.Length; i++)
             {
                 Entity floorTile = spawnECB.Instantiate(config.FloorPrefab);
-                spawnECB.SetComponent(floorTile, new LocalTransform(){_Position = tilePositions[i], _Rotation = quaternion.Euler(math.radians(90),0,0), _Scale = floorTiles[i]});
+                spawnECB.SetComponent(floorTile, new LocalTransform(){Position = tilePositions[i], Rotation = quaternion.Euler(math.radians(90),0,0), Scale = floorTiles[i]});
             }
 
-            //CalculateFloorElementPositions
-            NativeArray<Vector3> floorElementPositions = floorConfigAspect.CalculateFloorElementPositions(tilePositions);
-
+            //Creating grid
+            Entity gridEntity = SystemAPI.GetSingletonEntity<Grid>();
+            GridAspect gridAspect = SystemAPI.GetAspect<GridAspect>(gridEntity);
+            gridAspect.CreateGrid(grid);
+            
             //Creating New FloorTilesEvent
             Entity floorTilesEvent = spawnECB.CreateEntity();
-            spawnECB.AddComponent(floorTilesEvent, new NewFloorTiles(){Positions = floorElementPositions});
+            spawnECB.AddComponent(floorTilesEvent, new NewFloorTiles(){Positions = grid});
             
             //Destroying the Event Entity
             EndSimulationEntityCommandBufferSystem.Singleton endECBSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();

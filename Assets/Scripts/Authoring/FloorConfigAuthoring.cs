@@ -31,7 +31,7 @@ namespace Authoring
                 MaxStairsAmount = configAuthoring.maxStairs,
                 StairMargin = configAuthoring.stairMargin,
             });
-            AddComponent(new RandomStairs()
+            AddComponent(new RandomNumbers()
             {
                 Value = Random.CreateFromIndex(configAuthoring.randomSeed)
             });

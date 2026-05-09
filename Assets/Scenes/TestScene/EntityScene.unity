@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 110104160}
   - component: {fileID: 110104159}
   - component: {fileID: 110104161}
+  - component: {fileID: 110104162}
   m_Layer: 0
   m_Name: Config
   m_TagString: Untagged
@@ -155,7 +156,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 8360525329506294328, guid: 345044932f446c8489e3aeb265745b7d,
     type: 3}
-  dungeonDepth: 3
+  startingPointFreeSpaceDistance: 2
+  tileConfigs:
+  - {fileID: 11400000, guid: 68477005550468e4ab5e50f3df5b059f, type: 2}
+  - {fileID: 11400000, guid: dd3b8f434a3e74047b20de3cd47e7439, type: 2}
+  - {fileID: 11400000, guid: a8286f98128fe3b428216138ecde7e5a, type: 2}
+  - {fileID: 11400000, guid: 01df13f34cc2bf04884a7fb9bbaff4b8, type: 2}
+  - {fileID: 11400000, guid: cc0c0172aedb8be4b91c212919961ad8, type: 2}
 --- !u!4 &110104160
 Transform:
   m_ObjectHideFlags: 0
@@ -185,7 +192,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: 34971187469487227, guid: 44a7e6c095fcca04cb480006ee4631aa,
     type: 3}
-  randomSeed: 0
-  floorSize: {x: 10, y: 10}
+  randomSeed: 10
+  maxFloorTiles: 50
+  minFloorTileSize: 2
+  maxFloorTileSize: 5
   minStairs: 1
   maxStairs: 3
+  stairMargin: 1
+--- !u!114 &110104162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110104158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 757d6918b4aa44f4a9346b4c3cd55bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 144751944665610182, guid: a02628e340fe7cd43b0f9321761450fe,
+    type: 3}

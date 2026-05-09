@@ -1,8 +1,9 @@
 ﻿using Unity.Entities;
+using UnityEngine;
 
 namespace Components
 {
-    internal struct NewFloor : IComponentData
+    internal struct SpawnPlayer : IComponentData
     {
         
     }

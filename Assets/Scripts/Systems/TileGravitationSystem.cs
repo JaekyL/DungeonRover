@@ -13,7 +13,7 @@ internal partial struct TileGravitationJob : IJobEntity
     public float DeltaTime;
     public float Depth;
 
-    void Execute([ChunkIndexInQuery] int chunkIndex, ref TileAspect tile)
+    void Execute([ChunkIndexInQuery] int chunkIndex, TileAspect tile)
     {
         float3 gravity = new float3(0, -9.82f, 0);
 
@@ -49,7 +49,7 @@ internal partial struct TileGravitationSystem : ISystem
         {
             ECB = ecb.AsParallelWriter(),
             DeltaTime = SystemAPI.Time.DeltaTime,
-            Depth = SystemAPI.GetSingleton<DungeonConfig>().DungeonDepth
+            
             
         };
 
