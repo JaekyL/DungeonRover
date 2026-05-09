@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0af549efbe83e34d984df19ae031eb5, type: 3}
+  m_Name: DungeonRenderConfig
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonGeneration.Rendering.DungeonRenderConfig
+  tileSize: 1
+  wallHeight: 2
+  floorPrefab: {fileID: 0}
+  wallPrefab: {fileID: 0}
+  corridorFloorPrefab: {fileID: 0}
+  ceilingPrefab: {fileID: 0}
+  doorPrefab: {fileID: 0}
+  lockedDoorPrefab: {fileID: 0}
+  secretDoorPrefab: {fileID: 0}
+  stairsUpPrefab: {fileID: 0}
+  stairsDownPrefab: {fileID: 0}
+  waterPrefab: {fileID: 0}
+  rubblePrefab: {fileID: 0}
+  pitPrefab: {fileID: 0}
+  storyMarkerPrefabs: []
+  decorationPrefabs: []
+  defaultEnemyPrefab: {fileID: 0}
+  encounterPrefabs: []
+  fallbackPrefab: {fileID: 0}
+  defaultFloorMaterial: {fileID: 0}
+  defaultWallMaterial: {fileID: 0}
+  waterMaterial: {fileID: 0}
+  corruptedMaterial: {fileID: 0}
+  generateCeiling: 0
+  useObjectPooling: 1
+  combineStaticMeshes: 1
