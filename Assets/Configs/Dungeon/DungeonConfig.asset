@@ -23,7 +23,7 @@ MonoBehaviour:
   secretRoomProbability: 0.15
   lockKeyPairs: 2
   placeBoss: 1
-  primaryAlgorithm: 0
+  primaryAlgorithm: 4
   minRoomSize: {x: 5, y: 5}
   maxRoomSize: {x: 15, y: 15}
   corridorWidth: 2

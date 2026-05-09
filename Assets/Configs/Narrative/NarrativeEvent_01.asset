@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2303fd07bc47474883cc67fd3d1f5334, type: 3}
+  m_Name: NarrativeEvent_01
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonGeneration.Narrative.Authoring.NarrativeEventDefinition
+  eventId: 
+  displayName: 
+  description: 
+  timing: 0
+  fixedStep: -1
+  earliestStep: 0
+  latestStep: 10
+  preconditions: []
+  involvedFactions: []
+  involvedCharacters: []
+  effects: []
+  isMandatory: 0
+  isProtectedOutcome: 0
+  protectedOutcomeDescription: 
+  triggeredEvents: []
+  cascadeProbability: 1
+  severity: 1
+  environmentalTags: []
+  spatialConsequenceHint: 

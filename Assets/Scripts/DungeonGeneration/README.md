@@ -176,6 +176,31 @@ public class PlagueRule : IStoryRule
 }
 ```
 
+## Narrative Simulation Framework
+
+Das Dungeon-Generation-System wurde um ein narrativ-gesteuertes historisches Simulationsframework erweitert.
+
+Siehe: `Narrative/README.md` für vollständige Dokumentation.
+
+### Zusätzliche Pipeline-Stages (Narrative)
+
+| # | Stage | Priority | Klasse | Beschreibung |
+|---|-------|----------|--------|--------------|
+| - | Config Injection | 1 | `NarrativeConfigInjector` | Injiziert NarrativeConfig in den Kontext |
+| - | Semantic Extraction | 250 | `SemanticExtractionStage` | Extrahiert Narrative-Daten für Simulation |
+| - | Narrative Simulation | 305 | `NarrativeSimulationStage` | Constrained historische Simulation |
+| - | Spatial Interpretation | 450 | `SpatialInterpretationStage` | Konvertiert Sim-State in räumliche Marker |
+| - | Env. Storytelling | 605 | `EnvironmentalStorytellingStage` | Szenen-basiertes Environmental Storytelling |
+| - | Prop Mutation | 705 | `PropMutationStage` | Mutiert Dekorationen basierend auf Narrative |
+| - | Narrative Validation | 855 | `NarrativeValidationStage` | Readability-Validierung |
+
+### Schnellstart (Narrative)
+
+1. `NarrativeGenerator` Component zum DungeonGenerator hinzufügen
+2. `NarrativeConfig` ScriptableObject erstellen und konfigurieren
+3. Faktionen, Charaktere und Events definieren
+4. "Generate with Narrative" Button klicken
+
 ## Design-Prinzipien
 
 - **Data-Driven**: ScriptableObjects für Konfiguration
@@ -183,4 +208,6 @@ public class PlagueRule : IStoryRule
 - **Layered Pipeline**: Stages laufen unabhängig, kommunizieren über GenerationContext
 - **Open/Closed**: Neue Features über Interfaces hinzufügen, ohne bestehenden Code zu ändern
 - **2D/3D agnostisch**: Datenstrukturen sind Tile-basiert, Rendering ist separat
+- **Authored Emergence**: Narrative-Simulation ist geführt, nicht chaotisch
+- **Environmental Storytelling**: Jedes Prop existiert, weil jemand es benutzt hat
 
