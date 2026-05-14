@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DungeonGeneration.Core
 {
@@ -9,6 +10,12 @@ namespace DungeonGeneration.Core
     [ExecuteInEditMode]
     public class DungeonGenerator : MonoBehaviour
     {
+        /// <summary>
+        /// Fired after a dungeon has been successfully generated and rendered.
+        /// Listeners (e.g. DungeonTraversalBridge) can use this to initialize
+        /// systems that depend on generated dungeon data.
+        /// </summary>
+        public event Action<GenerationContext> OnDungeonGenerated;
         [Header("Configuration")]
         [SerializeField] private DungeonConfig _config;
         [SerializeField] private int _seed = -1;
@@ -49,7 +56,7 @@ namespace DungeonGeneration.Core
         [ContextMenu("Generate Dungeon")]
         public GenerationContext Generate()
         {
-            int seed = _useRandomSeed ? Random.Range(int.MinValue, int.MaxValue) : _seed;
+            int seed = _useRandomSeed ? UnityEngine.Random.Range(int.MinValue, int.MaxValue) : _seed;
             _seed = seed;
             
             if(_pipeline == null)
@@ -60,6 +67,7 @@ namespace DungeonGeneration.Core
             
             _lastContext = _pipeline.Execute(_config, seed);
             AutoRender();
+            OnDungeonGenerated?.Invoke(_lastContext);
             return _lastContext;
         }
         public GenerationContext Generate(int seed)
@@ -75,6 +83,7 @@ namespace DungeonGeneration.Core
             
             _lastContext = _pipeline.Execute(_config, seed);
             AutoRender();
+            OnDungeonGenerated?.Invoke(_lastContext);
             return _lastContext;
         }
 
