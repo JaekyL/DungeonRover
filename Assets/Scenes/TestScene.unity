@@ -133,6 +133,8 @@ GameObject:
   - component: {fileID: 252407861}
   - component: {fileID: 252407860}
   - component: {fileID: 252407859}
+  - component: {fileID: 252407866}
+  - component: {fileID: 252407865}
   m_Layer: 0
   m_Name: TraversalAI
   m_TagString: Untagged
@@ -155,6 +157,8 @@ MonoBehaviour:
   _profile: {fileID: 11400000, guid: cb1b406f2336cda4a8884fa3181de2f3, type: 2}
   _moveSpeed: 5
   _decisionInterval: 1
+  _waypointArrivalDistance: 0.3
+  _nodeArrivalDistance: 1.5
   _currentStateName: None
   _currentGoalDescription: None
   _currentNodeId: -1
@@ -273,6 +277,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &252407865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252407858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8add811c9824db0a388aa30bd760784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Combat.Core.CombatBrain
+  _decisionInterval: 0.5
+  _doctrine: {fileID: 11400000, guid: 91506b9efd4b54e4e9167fa64c926732, type: 2}
+  _currentIntention: Idle
+  _lastSkillConsidered: None
+  _lastBestScore: 0
+--- !u!114 &252407866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252407858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b13ae1933c7461abd2df735e9985658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Combat.Core.CombatAgent
+  _faction: 1
+  _agentName: Agent
+  _maxHealth: 100
+  _currentHealth: 100
+  _maxStamina: 100
+  _currentStamina: 100
+  _staminaRegenRate: 15
+  _moveSpeed: 4
+  _combatMoveSpeed: 3
+  _equippedWeapon: {fileID: 0}
+  _equippedSkills: []
+  _combatState: 0
+  _stance: 0
+  _formationRole: 6
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,8 +718,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonGeneration.Core.DungeonGenerator
   _config: {fileID: 11400000, guid: 30b0c5cfcb21d8b4cacf5ad7a59dbe93, type: 2}
-  _seed: -1369511532
-  _useRandomSeed: 0
+  _seed: 410158027
+  _useRandomSeed: 1
   _generateOnStart: 0
   _showDebugVisualization: 1
 --- !u!4 &2143055342

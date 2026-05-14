@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36dfffe0f48048d6bab6b6adc64d9404, type: 3}
+  m_Name: NewDoctrine
+  m_EditorClassIdentifier: Assembly-CSharp::Combat.AI.CombatDoctrineSO
+  DoctrineName: Default
+  Description: 
+  ActionThreshold: 0.15
+  TargetSwitchThreshold: 1.3
+  AggressionBias: 0
+  DefensiveBias: 0
+  MobilityBias: 0
+  RiskTolerance: 0.5
+  AttackGeometryMultiplier: 1
+  MovementAttackMultiplier: 1
+  PositionalMultiplier: 1
+  TempoMultiplier: 1
+  DefensiveMultiplier: 1
+  CrowdManipulationMultiplier: 1
+  CommitmentMultiplier: 1
+  PreferredRangeMultiplier: 1
+  FormationDiscipline: 0.5
+  FlankingDesire: 0.3
+  RetreatHealthThreshold: 0.2
+  CautionStaminaThreshold: 0.25
